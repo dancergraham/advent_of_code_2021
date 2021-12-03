@@ -4,7 +4,7 @@ test_input = """"""
 
 
 def part_1(puzzle_input: str) -> float:
-    parsed = (int(x) for x in puzzle_input.splitlines())
+    parsed = [x for x in puzzle_input.splitlines()]
     answer = 0
     for current in parsed:
         ...
@@ -12,7 +12,7 @@ def part_1(puzzle_input: str) -> float:
 
 
 def part_2(puzzle_input: str) -> float:
-    parsed = (int(x) for x in puzzle_input.splitlines())
+    parsed = [x for x in puzzle_input.splitlines()]
     answer = 0
     for current in parsed:
         ...
