@@ -15,6 +15,26 @@ test_input = """00100
 """
 
 
+def oxygen_rating(numbers: list[str]):
+    i = 0
+    while len(numbers) > 1:
+        ones = sum(int(num[i]) for num in numbers if num[i] == "1")
+        most_common = "1" if (ones >= len(numbers) / 2) else "0"
+        numbers = [n for n in numbers if n[i] == most_common]
+        i += 1
+    return numbers[0]
+
+
+def co2_rating(numbers: list[str]):
+    i = 0
+    while len(numbers) > 1:
+        ones = sum(int(num[i]) for num in numbers if num[i] == "1")
+        most_common = "1" if (ones < len(numbers) / 2) else "0"
+        numbers = [n for n in numbers if n[i] == most_common]
+        i += 1
+    return numbers[0]
+
+
 def part_1(puzzle_input: str) -> float:
     numbers = [x for x in puzzle_input.splitlines()]
     counter = [0 for bit in numbers[0]]
@@ -28,11 +48,8 @@ def part_1(puzzle_input: str) -> float:
 
 
 def part_2(puzzle_input: str) -> float:
-    parsed = (int(x) for x in puzzle_input.splitlines())
-    answer = 0
-    for current in parsed:
-        ...
-    return answer
+    numbers = [x for x in puzzle_input.splitlines()]
+    return (int(oxygen_rating(numbers), 2) * int(co2_rating(numbers), 2))
 
 
 def test_part_1():
@@ -40,7 +57,7 @@ def test_part_1():
 
 
 def test_part_2():
-    assert part_2(test_input) == 0
+    assert part_2(test_input) == 230
 
 
 def main():
