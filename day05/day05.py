@@ -23,11 +23,11 @@ def parser(puzzle_input: str):
                )
 
 
-def part_1(puzzle_input: str) -> float:
+def part_1(puzzle_input: str, part=1) -> float:
     parsed = parser(puzzle_input)
     point_counter = Counter()
     for (x0, y0), (x1, y1) in parsed:
-        if (x0 == x1) or (y0 == y1):
+        if (x0 == x1) or (y0 == y1) or part == 2:
             delta_x = x1 - x0
             delta_y = y1 - y0
             dx = 0 if not delta_x else int(delta_x / abs(delta_x))
@@ -38,27 +38,16 @@ def part_1(puzzle_input: str) -> float:
     return len([v for v in point_counter.values() if v > 1])
 
 
-def part_2(puzzle_input: str) -> float:
-    parsed = [x for x in puzzle_input.splitlines()]
-    answer = 0
-    for current in parsed:
-        ...
-    return answer
-
-
 def test_part_1():
     assert part_1(test_input) == 5
-
-
-def test_part_2():
-    assert part_2(test_input) == 0
+    assert part_1(test_input, part=2) == 12
 
 
 def main():
     print("🎄 Advent of code 2021 🎄")
     puzzle_input = Path("input.txt").read_text()
     print(f"Part 1: {part_1(puzzle_input)}")
-    print(f"Part 2: {part_2(puzzle_input)}")
+    print(f"Part 2: {part_1(puzzle_input, part=2)}")
 
 
 if __name__ == "__main__":
