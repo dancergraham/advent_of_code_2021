@@ -1,23 +1,24 @@
+from collections import Counter
 from pathlib import Path
 
 test_input = """3,4,3,1,2"""
 
 
-def part_1(puzzle_input: str) -> float:
+def part_1(puzzle_input: str, days=80) -> float:
     fishes = [int(x) for x in puzzle_input.split(",")]
-    for day in range(256):
-        newfish = [8 for fish in fishes if fish == 0]
-        fishes = [6 if fish == 0 else fish - 1 for fish in fishes]
-        fishes.extend(newfish)
-    return len(fishes)
+    fish_counter = Counter({i: 0 for i in range(9)})
+    fish_counter.update(fishes)
+    for day in range(days):
+        for i in range(9):
+            fish_counter[i - 1] = fish_counter[i]
+        fish_counter[8] = fish_counter[-1]
+        fish_counter[6] += fish_counter[-1]
+        fish_counter[-1] = 0
+    return sum(fish_counter.values())
 
 
 def part_2(puzzle_input: str) -> float:
-    parsed = [x for x in puzzle_input.splitlines()]
-    answer = 0
-    for current in parsed:
-        ...
-    return answer
+    return part_1(puzzle_input, days=256)
 
 
 def test_part_1():
@@ -25,7 +26,7 @@ def test_part_1():
 
 
 def test_part_2():
-    assert part_2(test_input) == 0
+    assert part_2(test_input) == 26984457539
 
 
 def main():
