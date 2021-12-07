@@ -20,9 +20,12 @@ def part_1(puzzle_input: str) -> float:
 def part_2(puzzle_input: str) -> float:
     crabs = [int(x) for x in puzzle_input.split(",")]
 
+    def cost(distance):
+        """Equivalent to triangle numbers"""
+        return int(distance * (distance + 1) // 2)
+
     def distance_sum(position):
-        return sum(sum(range(abs(crab - position) + 1))
-                   for crab in crabs)
+        return sum(cost(crab - position) for crab in crabs)
 
     position = min(range(min(crabs),
                          max(crabs) + 1
@@ -42,6 +45,7 @@ def test_part_2():
 
 def main():
     print("🎄 Advent of code 2021 🎄")
+    print("🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀🦀")
     puzzle_input = Path("input.txt").read_text()
     print(f"Part 1: {part_1(puzzle_input)}")
     print(f"Part 2: {part_2(puzzle_input)}")
