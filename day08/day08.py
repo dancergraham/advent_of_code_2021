@@ -26,7 +26,6 @@ def part_1(puzzle_input: str) -> float:
     outputs = [line.split(" |")[1] for line in puzzle_input.splitlines()]
     answer = 0
     for output in outputs:
-        print(output)
         answer += len([item for item in output.split() if len(item) in [2, 3, 4, 7]])
     return answer
 
