@@ -32,10 +32,35 @@ def part_1(puzzle_input: str) -> float:
 
 
 def part_2(puzzle_input: str) -> float:
-    parsed = [x for x in puzzle_input.splitlines()]
+    parsed = (line.split(" |") for line in puzzle_input.splitlines())
     answer = 0
-    for current in parsed:
-        ...
+    digits = {}
+    for pattern, output in parsed:
+        digits[1], digits[7], digits[4], *_others, digits[8] = sorted(
+            map(set, pattern.split()), key=len)
+        _235 = _others[:3]
+        _069 = _others[3:]
+        for digit in _069:
+            if len(digit.difference(digits[4])) == 2:
+                digits[9] = digit
+            elif len(digit.union(digits[1])) == 7:
+                digits[6] = digit
+            else:
+                digits[0] = digit
+        for digit in _235:
+            if len(digit.difference(digits[4])) == 3:
+                digits[2] = digit
+            elif len(digit.difference(digits[7])) == 2:
+                digits[3] = digit
+            else:
+                digits[5] = digit
+        result = []
+        for out in output.split():
+            out = set(out)
+            for value, pattern in digits.items():
+                if out == pattern:
+                    result.append(str(value))
+        answer += int("".join(result))
     return answer
 
 
