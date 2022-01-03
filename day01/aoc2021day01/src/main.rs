@@ -1,7 +1,7 @@
 fn main() {
-    use std::path::Path;
     use std::fs::File;
     use std::io::prelude::*;
+    use std::path::Path;
 
     let input = "199
 200
@@ -17,7 +17,6 @@ fn main() {
     let mut answer_part_1 = 0;
     assert_eq!(answer, 7);
 
-
     let path = Path::new("../input.txt");
     let display = path.display();
 
@@ -30,7 +29,9 @@ fn main() {
     let mut s = String::new();
     match file.read_to_string(&mut s) {
         Err(why) => panic!("couldn't read {}: {}", display, why),
-        Ok(_) => { answer_part_1 = part_1(&s); },
+        Ok(_) => {
+            answer_part_1 = part_1(&s);
+        }
     }
 
     println!("The answer is {}", answer_part_1)
