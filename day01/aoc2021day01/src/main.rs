@@ -3,7 +3,7 @@ fn main() {
     use std::io::prelude::*;
     use std::path::Path;
 
-    let input = "199
+    let test_input = "199
 200
 208
 210
@@ -13,8 +13,7 @@ fn main() {
 269
 260
 263";
-    let answer = part_1(input);
-    let mut answer_part_1 = 0;
+    let answer = part_1(test_input);
     assert_eq!(answer, 7);
 
     let path = Path::new("../input.txt");
@@ -30,11 +29,10 @@ fn main() {
     match file.read_to_string(&mut s) {
         Err(why) => panic!("couldn't read {}: {}", display, why),
         Ok(_) => {
-            answer_part_1 = part_1(&s);
+            let answer_part_1 = part_1(&s);
+            println!("The answer is {}", answer_part_1);
         }
     }
-
-    println!("The answer is {}", answer_part_1)
 }
 
 fn part_1(input: &str) -> i32 {
