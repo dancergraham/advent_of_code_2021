@@ -41,8 +41,10 @@ def test_part_2():
 
 
 def main():
+    test_part_1()
     puzzle_input = Path("input.txt").read_text()
     print(part_1(puzzle_input))
+    test_part_2()
     print(part_2(puzzle_input))
 
 

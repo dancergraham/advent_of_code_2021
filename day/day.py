@@ -30,7 +30,9 @@ def test_part_2():
 def main():
     print("🎄 Advent of code 2021 🎄")
     puzzle_input = Path("input.txt").read_text()
+    test_part_1()
     print(f"Part 1: {part_1(puzzle_input)}")
+    test_part_2()
     print(f"Part 2: {part_2(puzzle_input)}")
 
 
