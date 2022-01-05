@@ -24,16 +24,11 @@ def part_1(puzzle_input: str) -> float:
 
 
 def part_2(puzzle_input: str) -> float:
-    parsed = (int(x) for x in puzzle_input.splitlines())
+    parsed = [int(x) for x in puzzle_input.splitlines()]
     answer = 0
-    previous = [next(parsed), next(parsed), next(parsed)]
-    _sum = sum(previous)
-    for current in parsed:
-        previous.append(current)
-        if sum(previous[1:]) > _sum:
+    for removed, added in zip(parsed[:-3:], parsed[3::], strict=True):
+        if added > removed:
             answer += 1
-        previous = previous[1:]
-        _sum = sum(previous)
     return answer
 
 

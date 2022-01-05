@@ -37,7 +37,7 @@ fn main() {
 
 fn part_1(input: &str) -> i32 {
     use std::cmp::Ordering;
-    let mut line0: i32 = 9999;
+    let mut line0: i32 = 9_999;
     let mut answer = 0;
     let lines = input.lines();
     for line in lines {
