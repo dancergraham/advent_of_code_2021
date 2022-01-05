@@ -37,11 +37,12 @@ fn main() {
 
 fn part_1(input: &str) -> i32 {
     use std::cmp::Ordering;
-    let mut line0 = "9999";
+    let mut line0: i32 = 9999;
     let mut answer = 0;
     let lines = input.lines();
     for line in lines {
-        let order = line.cmp(line0);
+        let line = line.parse::<i32>().unwrap();
+        let order = line.cmp(&line0);
         if order == Ordering::Greater {
             answer = answer + 1;
         }
