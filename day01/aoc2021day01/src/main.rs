@@ -30,14 +30,16 @@ fn main() {
         Err(why) => panic!("couldn't read {}: {}", display, why),
         Ok(_) => {
             let answer_part_1 = part_1(&s);
-            println!("The answer is {}", answer_part_1);
+            println!("The answer to Part 1 is {}", answer_part_1);
+            let answer_part_2 = part_2(&s);
+            println!("The answer to Part 2 is {}", answer_part_2);
         }
     }
 }
 
 fn part_1(input: &str) -> i32 {
     use std::cmp::Ordering;
-    let mut line0: i32 = 9_999;
+    let mut line0: i32 = 9_999; // initialise with large value
     let mut answer = 0;
     let lines = input.lines();
     for line in lines {
@@ -46,6 +48,26 @@ fn part_1(input: &str) -> i32 {
         if order == Ordering::Greater {
             answer = answer + 1;
         }
+        line0 = line;
+    }
+    return answer;
+}
+
+fn part_2(input: &str) -> i32 {
+    use std::cmp::Ordering;
+    let mut line0: i32 = 9_999; // initialise with large value
+    let mut line1: i32 = 9_999; // initialise with large value
+    let mut line2: i32 = 9_999; // initialise with large value
+    let mut answer: i32 = 0;
+    let lines = input.lines();
+    for line in lines {
+        let line = line.parse::<i32>().unwrap();
+        let order = line.cmp(&line2);
+        if order == Ordering::Greater {
+            answer = answer + 1;
+        }
+        line2 = line1;
+        line1 = line0;
         line0 = line;
     }
     return answer;
