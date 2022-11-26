@@ -19,7 +19,9 @@ ed bcgafe cdgba cbgef
 egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg |
 gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc |
-fgae cfgab fg bagce""".replace("|\n", "|")
+fgae cfgab fg bagce""".replace(
+    "|\n", "|"
+)
 
 
 def part_1(puzzle_input: str) -> float:
@@ -36,7 +38,8 @@ def part_2(puzzle_input: str) -> float:
     digits = {}
     for pattern, output in parsed:
         digits[1], digits[7], digits[4], *_others, digits[8] = sorted(
-            map(set, pattern.split()), key=len)
+            map(set, pattern.split()), key=len
+        )
         _235 = _others[:3]
         _069 = _others[3:]
         for digit in _069:

@@ -18,9 +18,7 @@ def parser(puzzle_input: str):
         start, stop = line.split(" -> ")
         x0, y0 = start.split(",")
         x1, y1 = stop.split(",")
-        yield ((int(x0), int(y0)),
-               (int(x1), int(y1))
-               )
+        yield ((int(x0), int(y0)), (int(x1), int(y1)))
 
 
 def part_1(puzzle_input: str, part=1) -> float:

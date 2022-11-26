@@ -23,18 +23,23 @@ def part_1(puzzle_input: str) -> float:
         for paren in line:
             if paren in "[{(<":
                 stack.append(paren)
-            elif stack[-1] == {">": "<",
-                               ")": "(",
-                               "]": "[",
-                               "}": "{",
-                               }[paren]:
+            elif (
+                    stack[-1]
+                    == {
+                        ">": "<",
+                        ")": "(",
+                        "]": "[",
+                        "}": "{",
+                    }[paren]
+            ):
                 stack.pop()
             else:
-                score = {">": 25137,
-                         ")": 3,
-                         "]": 57,
-                         "}": 1197,
-                         }
+                score = {
+                    ">": 25137,
+                    ")": 3,
+                    "]": 57,
+                    "}": 1197,
+                }
                 answer += score[paren]
                 break
     return answer
@@ -42,16 +47,18 @@ def part_1(puzzle_input: str) -> float:
 
 def part_2(puzzle_input: str) -> float:
     answers = []
-    score = {"<": 4,
-             "(": 1,
-             "[": 2,
-             "{": 3,
-             }
-    close_to_open = {">": "<",
-                     ")": "(",
-                     "]": "[",
-                     "}": "{",
-                     }
+    score = {
+        "<": 4,
+        "(": 1,
+        "[": 2,
+        "{": 3,
+    }
+    close_to_open = {
+        ">": "<",
+        ")": "(",
+        "]": "[",
+        "}": "{",
+    }
     for line in puzzle_input.splitlines():
         stack = []
         for paren in line:

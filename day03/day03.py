@@ -49,7 +49,7 @@ def part_1(puzzle_input: str) -> float:
 
 def part_2(puzzle_input: str) -> float:
     numbers = [x for x in puzzle_input.splitlines()]
-    return (int(oxygen_rating(numbers), 2) * int(co2_rating(numbers), 2))
+    return int(oxygen_rating(numbers), 2) * int(co2_rating(numbers), 2)
 
 
 def test_part_1():
