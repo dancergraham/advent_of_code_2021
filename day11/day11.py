@@ -58,7 +58,9 @@ def set_neighbours(grid):
 
 
 def part_1(puzzle_input: str) -> float:
-    grid = [[Octopus(energy_level=x) for x in line] for line in puzzle_input.splitlines()]
+    grid = [
+        [Octopus(energy_level=x) for x in line] for line in puzzle_input.splitlines()
+    ]
     set_neighbours(grid)
     for _ in range(100):
         # print(f"\nAfter step {step + 1}:")
@@ -72,11 +74,17 @@ def part_1(puzzle_input: str) -> float:
 
 
 def part_2(puzzle_input: str) -> float:
-    parsed = [x for x in puzzle_input.splitlines()]
-    answer = 0
-    for current in parsed:
-        ...
-    return answer
+    grid = [
+        [Octopus(energy_level=x) for x in line] for line in puzzle_input.splitlines()
+    ]
+    set_neighbours(grid)
+    for step in range(1, 10_000):
+        for line in grid:
+            for octopus in line:
+                octopus += 1
+        [octopus.end_step() for line in grid for octopus in line]
+        if all(octopus.energy_level == 0 for line in grid for octopus in line):
+            return step
 
 
 def test_part_1():
@@ -84,7 +92,7 @@ def test_part_1():
 
 
 def test_part_2():
-    assert part_2(test_input) == 0
+    assert part_2(test_input) == 195
 
 
 def main():

@@ -9,11 +9,7 @@ def part_1(puzzle_input: str) -> float:
     def distance_sum(position):
         return sum(abs(crab - position) for crab in crabs)
 
-    position = min(range(min(crabs),
-                         max(crabs) + 1
-                         ),
-                   key=distance_sum
-                   )
+    position = min(range(min(crabs), max(crabs) + 1), key=distance_sum)
     return distance_sum(position)
 
 
@@ -27,11 +23,7 @@ def part_2(puzzle_input: str) -> float:
     def distance_sum(position):
         return sum(cost(crab - position) for crab in crabs)
 
-    position = min(range(min(crabs),
-                         max(crabs) + 1
-                         ),
-                   key=distance_sum
-                   )
+    position = min(range(min(crabs), max(crabs) + 1), key=distance_sum)
     return distance_sum(position)
 
 

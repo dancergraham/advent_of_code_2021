@@ -29,7 +29,9 @@ def part_1(puzzle_input: str) -> float:
         board1 = deepcopy(new_board)
         for row in range(height):
             for col in range(width):
-                if (board1[row][col] == "v") and (board1[(row + 1) % height][col] == "."):
+                if (board1[row][col] == "v") and (
+                        board1[(row + 1) % height][col] == "."
+                ):
                     new_board[row][col] = "."
                     new_board[(row + 1) % height][col] = "v"
         if board == new_board:
