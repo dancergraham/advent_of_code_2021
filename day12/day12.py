@@ -41,7 +41,11 @@ def part_2(puzzle_input: str) -> float:
         for destination in destinations[current_path[-1]]:
             if destination == "end":
                 completed_paths.append(current_path + ["end"])
-            elif destination.islower() and destination in current_path and not current_path[0] == "doubled":
+            elif (
+                    destination.islower()
+                    and destination in current_path
+                    and not current_path[0] == "doubled"
+            ):
                 incomplete_paths.append(["doubled"] + current_path + [destination])
             elif not destination.islower() or destination not in current_path:
                 incomplete_paths.append(current_path + [destination])
